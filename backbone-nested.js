@@ -18,7 +18,7 @@
     define(['backbone'], function(backbone) {
       factory(Backbone);
     });
-  } 
+  }
 }(function(Backbone) {
     var Model = Backbone.Model,
         Collection = Backbone.Collection;
@@ -31,6 +31,7 @@
         if(options.unset && relation) delete relation.parent;
 
         if(this.relations && _.has(this.relations, attr)) {
+            if (val instanceof this.relations[attr]) return val;
 
             // If the relation already exists, we don't want to replace it, rather
             // update the data within it whether it is a collection or model
